@@ -1,0 +1,212 @@
+.auth_layout {
+    display: flex;
+    height: 100vh;
+}
+
+.left_half,
+.right_half {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.left_half {
+    margin: 1rem;
+    border-radius: 1rem;
+    background-image: url('../../assets/images/auth_layout_img.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.left_half_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 800px;
+}
+
+.header {
+    margin: 2.5rem 0 1rem 3rem;
+}
+
+.app_name {
+    color: white;
+    font-size: 4rem;
+    font-weight: 400;
+    letter-spacing: -0.07rem;
+}
+
+.app_tag_line {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: -0.03rem;
+}
+
+.client_code_image,
+.auth_code_image {
+    position: absolute;
+}
+
+.client_code_image {
+    height: 120px;
+    left: 5rem;
+}
+
+.auth_code_image {
+    height: 280px;
+    bottom: 1.5rem;
+    right: 4rem;
+}
+
+.code_image {
+    width: 65%;
+    object-fit: contain;
+    transition: width 0.3s ease;
+}
+
+
+
+@media (min-width: 220px) and (max-width: 375px) {
+    .left_half,
+    .right_half {
+        flex-basis: 100%;
+    }
+
+    .left_half {
+        display: none;
+    }
+}
+
+@media (min-width: 375px) and (max-width: 425px) {
+    .left_half,
+    .right_half {
+        flex-basis: 100%;
+    }
+
+    .left_half {
+        display: none;
+    }
+}
+@media (min-width: 425px) and (max-width: 860px) {
+    .left_half,
+    .right_half {
+        flex-basis: 100%;
+    }
+
+    .left_half {
+        display: none;
+    }
+}
+
+@media (min-width: 860px) and (max-width: 920px) {
+    .left_half_content {
+        width: 100%;
+    }
+    .header {
+        margin: 2rem 0 2rem 0rem;
+    }
+    .app_name {
+        font-size: 2.5rem;
+        margin: 0 0 0.3rem 2rem;
+    }
+
+    .app_tag_line {
+        font-size: 1rem;
+        width: 90%;
+        margin: 0 0 0.3rem 2.2rem;
+    }
+
+    .client_code_image {
+        height: 100px;
+        left: 2rem;
+        top: 7rem;
+    }
+
+    .auth_code_image {
+        height: 240px;
+        bottom: 1.5rem;
+        right: 2rem;
+    }
+
+    .code_image {
+        width: 95%;
+        margin-left: 0.5rem;
+    }
+}
+@media (min-width: 920px) and (max-width: 1020px) {
+    .left_half_content {
+        width: 100%;
+    }
+    .header {
+        margin: 2rem 0 2rem 0rem;
+    }
+    .app_name {
+        font-size: 2.5rem;
+        margin: 0 0 0.3rem 2rem;
+    }
+
+    .app_tag_line {
+        font-size: 1rem;
+        width: 90%;
+        margin: 0 0 0.3rem 2.2rem;
+    }
+
+    .code_image {
+        width: 95%;
+        margin-left: 0.5rem;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+    .left_half_content {
+        width: 100%;
+    }
+    .header {
+        margin: 6rem 0 1rem 0.5rem;
+    }
+    .app_name {
+        font-size: 3.5rem;
+        margin: 0 0 0rem 2rem;
+    }
+
+    .app_tag_line {
+        font-size: 1.1rem;
+        width: 90%;
+        margin: 0 0 0.3rem 2.2rem;
+    }
+
+    .code_image {
+        width: 80%;
+        margin-left: 2rem;
+        margin-bottom: 5rem;
+    }
+}
+@media (min-width: 1440px) and (max-width: 2560px) {
+    .left_half_content {
+        width: 100%;
+    }
+
+    .header {
+        margin: 1rem 0 1rem 1.5rem;
+    }
+
+    .app_name {
+        font-size: 4.5rem;
+        margin: 0 0 0rem 2rem;
+    }
+
+    .app_tag_line {
+        font-size: 1.4rem;
+        width: 90%;
+        margin: 0 0 0.3rem 2.2rem;
+    }
+
+    .code_image {
+        width: 88%;
+        margin-left: 2rem;
+    }
+}

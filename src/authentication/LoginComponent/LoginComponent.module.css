@@ -1,0 +1,145 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 1rem;
+    width: 100%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 450px;
+}
+
+.app_logo {
+    display: none;
+    height: 40px;
+    width: 40px;
+    border-radius: 0.2rem;
+    margin: 0 0 2rem 0;
+}
+
+.app_name {
+    display: none;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.05rem;
+    margin-bottom: 0.5rem;
+}
+
+.title {
+    font-size: 2.8rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    letter-spacing: -0.07rem;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    margin-left: 0.3rem;
+}
+
+.signup_link {
+    color: #017e28;
+    margin-left: 0.3rem;
+}
+
+.inputGroup {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.label {
+    position: absolute;
+    left: 10px;
+    top: 14px;
+    transition: 0.2s ease all;
+    color: #a1a1a1;
+    pointer-events: none;
+    font-size: 0.9rem;
+    background-color: white;
+    padding: 0 0.3rem;
+}
+
+.input {
+    width: 100%;
+    padding: 0.8rem 0.75rem;
+    border: 1px solid #a1a1a1;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input:focus + .label,
+.input:not(:placeholder-shown) + .label {
+    top: -6px;
+    left: 12px;
+    font-size: 12px;
+    color: #a1a1a1;
+    background-color: white;
+}
+
+.loginButton {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #1a202c;
+    color: white;
+    border: none;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0.5rem 0 1rem 0;
+    background-color: black;
+}
+
+.loginButton:hover {
+    background-color: rgba(0, 0, 0, 0.825);
+}
+
+.googleButton {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 0.3;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.googleButton:hover {
+    background-color: #eee;
+}
+
+.googleIcon {
+    height: 1.3rem;
+    margin-right: 0.6rem;
+}
+
+.error {
+    font-size: 0.8rem;
+    color: red;
+    margin-top: 0.2rem;
+}
+
+.forgot_password {
+    text-align: right;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    color: #017e28;
+}

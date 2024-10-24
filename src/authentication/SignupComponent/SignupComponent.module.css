@@ -1,0 +1,255 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 1rem;
+    width: 100%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 450px;
+}
+
+.app_logo {
+    display: none;
+    height: 40px;
+    width: 40px;
+    border-radius: 0.2rem;
+    margin: 0 0 2rem 0;
+}
+
+.app_name {
+    display: none;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.05rem;
+    margin-bottom: 0.5rem;
+}
+
+.title {
+    font-size: 2.8rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    letter-spacing: -0.07rem;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    margin-left: 0.3rem;
+}
+
+.login_link {
+    color: #017e28;
+    margin-left: 0.3rem;
+}
+
+.inputGroup {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.label {
+    position: absolute;
+    left: 10px;
+    top: 14px;
+    transition: 0.2s ease all;
+    color: #a1a1a1;
+    pointer-events: none;
+    font-size: 0.9rem;
+    background-color: white;
+    padding: 0 0.3rem;
+}
+
+.input {
+    width: 100%;
+    padding: 0.8rem 0.75rem;
+    border: 1px solid #a1a1a1;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input:focus + .label,
+.input:not(:placeholder-shown) + .label {
+    top: -6px;
+    left: 12px;
+    font-size: 12px;
+    color: #a1a1a1;
+    background-color: white;
+}
+
+.createButton {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #1a202c;
+    color: white;
+    border: none;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0.5rem 0 1rem 0;
+    background-color: black;
+    /* background-color: #017e28; */
+    /* background: linear-gradient(170deg, #66c16d 0%, #1a472e 100%); */
+}
+
+.createButton:hover {
+    /* background-color: #00611f; */
+    background-color: rgba(0, 0, 0, 0.825);
+}
+
+.googleButton {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 0.3;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.googleButton:hover {
+    background-color: #f5f5f5;
+}
+
+.googleIcon {
+    width: 18px;
+    height: 18px;
+    margin-right: 0.5rem;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 0.25rem;
+    margin-left: 0.4rem;
+}
+
+/* .weak {
+    background-color: #ff4d4d;
+}
+
+.medium {
+    background-color: #ffcc00;
+}
+
+.strong {
+    background-color: #4caf50;
+} */
+
+.passwordStrengthText {
+    font-size: 12px;
+    margin-top: 10px;
+    color: #666;
+}
+
+@media (min-width: 220px) and (max-width: 426px) {
+    .container {
+        justify-content: flex-start;
+        padding: 2rem 1rem;
+        min-height: 100vh;
+    }
+
+    .form {
+        padding: 2rem 0.5rem;
+    }
+
+    .app_logo {
+        display: block;
+    }
+
+    .app_name {
+        display: block;
+        font-size: 2rem;
+        font-weight: 600;
+        letter-spacing: -0.05rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .title {
+        display: none;
+    }
+
+    .subtitle {
+        margin-bottom: 2.5rem;
+    }
+
+    .input,
+    .createButton,
+    .googleButton {
+        font-size: 0.9rem;
+    }
+
+    .label {
+        font-size: 0.8rem;
+    }
+}
+
+@media (min-width: 425px) and (max-width: 860px) {
+    .container {
+        justify-content: flex-start;
+        padding: 1rem 2rem;
+        width: 100%;
+    }
+
+    .app_logo {
+        display: block;
+    }
+
+    .app_name {
+        display: block;
+        font-size: 2rem;
+        font-weight: 600;
+        letter-spacing: -0.05rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .title {
+        display: none;
+    }
+
+    .input {
+        padding: 0.75rem 0.5rem;
+    }
+
+    .label {
+        font-size: 0.8rem;
+    }
+}
+
+@media (min-width: 860px) and (max-width: 1024px) {
+    .title {
+        font-size: 2.1rem;
+    }
+
+    .subtitle {
+        margin-bottom: 2.5rem;
+    }
+
+    .input,
+    .createButton,
+    .googleButton {
+        font-size: 0.9rem;
+    }
+}
+/* @media (min-width: 1024px) and (max-width: 1440px) {
+}
+@media (min-width: 1440px) and (max-width: 2560px) {
+} */
