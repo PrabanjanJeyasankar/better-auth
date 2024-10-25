@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import authStyles from './AuthenticationLayout.module.css'
 import ClientAuthImage from '../../assets/images/client_auth.png'
-// import SignupComponent from '../../authentication/SignupComponent/SignupComponent'
 
 function AuthenticationLayout() {
     return (

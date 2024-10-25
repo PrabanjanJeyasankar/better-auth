@@ -1,0 +1,128 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 1rem;
+    width: 100%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 2rem 2rem 4rem 2rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+}
+
+.app_logo {
+    display: none;
+    height: 40px;
+    width: 40px;
+    border-radius: 0.2rem;
+    margin: 0 0 2rem 0;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    letter-spacing: -0.07rem;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.inputGroup {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.label {
+    position: absolute;
+    left: 10px;
+    top: 14px;
+    transition: 0.2s ease all;
+    color: #a1a1a1;
+    pointer-events: none;
+    font-size: 0.9rem;
+    background-color: white;
+    padding: 0 0.3rem;
+}
+
+.input {
+    width: 100%;
+    padding: 0.8rem 0.75rem;
+    border: 1px solid #a1a1a1;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input:focus + .label,
+.input:not(:placeholder-shown) + .label {
+    top: -6px;
+    left: 12px;
+    font-size: 12px;
+    color: #a1a1a1;
+    background-color: white;
+}
+
+.submitButton {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0.5rem 0 1rem 0;
+}
+
+.submitButton:hover {
+    background-color: rgba(0, 0, 0, 0.825);
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 0.25rem;
+    margin-left: 0.4rem;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.login_link {
+    color: #017e28;
+    margin-left: 0.3rem;
+}
+
+.back_button {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    bottom: 0px;
+    left: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.back_button:hover {
+    opacity: 0.5;
+    transition: opacity 0.1s ease-in; 
+}

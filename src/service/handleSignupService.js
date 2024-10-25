@@ -5,8 +5,7 @@ const handleSignup = async (formData) => {
         const response = await axiosInstance.post('/user/signup', formData)
         return response
     } catch (error) {
-        console.error('Signup error:', error)
-        throw error
+        return error
     }
 }
 

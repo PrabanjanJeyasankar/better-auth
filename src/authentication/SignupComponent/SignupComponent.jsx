@@ -1,15 +1,15 @@
-import { useContext, useEffect, useState } from 'react'
-import { UserContext } from '../../context/userContext.jsx'
+import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { validateSignupInputs } from '../../utils/authenticationFieldsValidation'
-import { auth, provider } from '../../config/firebaseConfig'
 import { signInWithPopup } from 'firebase/auth'
+import { UserContext } from '../../context/userContext.jsx'
+import { validateSignupInputs } from '../../utils/authenticationFieldsValidation'
 
-import AppLogo from '../../../src/assets/images/better_auth_favicon.webp'
-import signupStyles from './SignupComponent.module.css'
-import handleSignupService from '../../service/handleSignupService.js'
+import InputFieldComponent from '../../components/InputFieldComponent/InputFieldComponent.jsx'
 import handleGoogleSignupService from '../../service/handleGoogleSignupService.js'
+import AppLogo from '../../../src/assets/images/better_auth_favicon.webp'
+import handleSignupService from '../../service/handleSignupService.js'
 import PasswordStrengthBar from 'react-password-strength-bar'
+import signupStyles from './SignupComponent.module.css'
 import toast from 'react-hot-toast'
 
 function SignupComponent() {
@@ -21,7 +21,6 @@ function SignupComponent() {
     })
     const [errors, setErrors] = useState({})
     const [isLoading, setIsLoading] = useState(false)
-    const [value, setValue] = useState('')
 
     const handleInputChange = (event) => {
         const { name, value } = event.target
@@ -74,38 +73,6 @@ function SignupComponent() {
         }
     }
 
-    const handleGoogleSignIn = async () => {
-        try {
-            const result = await signInWithPopup(auth, provider)
-            const googleUser = result.user
-            console.log(googleUser)
-            const response = await handleGoogleSignupService({
-                name: googleUser.displayName,
-                email: googleUser.email,
-                goggleId: googleUser.uid,
-            })
-
-            if (response.status === 201) {
-                setIsLoggedIn(true)
-                setUserProfile(response.data.userProfile)
-                localStorage.setItem(
-                    'userProfile',
-                    JSON.stringify(response.data.userProfile)
-                )
-                localStorage.setItem('isLoggedIn', 'true')
-
-                toast.success('Google sign-up successful!')
-            }
-        } catch (error) {
-            console.error('Google sign-up error:', error)
-            toast.error('Failed to sign up with Google')
-        }
-    }
-
-    useEffect(() => {
-        setValue(localStorage.getItem('email'))
-    }, [])
-
     return (
         <div className={signupStyles.container}>
             <form
@@ -128,27 +95,50 @@ function SignupComponent() {
                     </Link>
                 </p>
 
-                {['name', 'email', 'password'].map((field) => (
-                    <div key={field} className={signupStyles.inputGroup}>
-                        <input
-                            type={field === 'password' ? 'password' : field}
-                            id={field}
-                            name={field}
-                            className={signupStyles.input}
-                            value={formData[field]}
-                            placeholder=''
-                            onChange={handleInputChange}
-                        />
-                        <label htmlFor={field} className={signupStyles.label}>
-                            {field.charAt(0).toUpperCase() + field.slice(1)}
-                        </label>
-                        {errors[field] && (
-                            <p className={signupStyles.error}>
-                                {errors[field]}
-                            </p>
-                        )}
-                    </div>
-                ))}
+                <InputFieldComponent
+                    id='name'
+                    name='name'
+                    type='text'
+                    value={formData.name}
+                    placeholder=' '
+                    label='Name'
+                    onChange={handleInputChange}
+                    error={errors.name}
+                    containerClass={signupStyles.inputGroup}
+                    inputClass={signupStyles.input}
+                    labelClass={signupStyles.label}
+                    errorClass={signupStyles.error}
+                />
+
+                <InputFieldComponent
+                    id='email'
+                    name='email'
+                    type='email'
+                    value={formData.email}
+                    placeholder=' '
+                    label='Email'
+                    onChange={handleInputChange}
+                    error={errors.email}
+                    containerClass={signupStyles.inputGroup}
+                    inputClass={signupStyles.input}
+                    labelClass={signupStyles.label}
+                    errorClass={signupStyles.error}
+                />
+
+                <InputFieldComponent
+                    id='password'
+                    name='password'
+                    type='password'
+                    value={formData.password}
+                    placeholder=' '
+                    label='Password'
+                    onChange={handleInputChange}
+                    error={errors.password}
+                    containerClass={signupStyles.inputGroup}
+                    inputClass={signupStyles.input}
+                    labelClass={signupStyles.label}
+                    errorClass={signupStyles.error}
+                />
 
                 {formData.password && (
                     <PasswordStrengthBar
@@ -163,10 +153,7 @@ function SignupComponent() {
                     disabled={isLoading}>
                     {isLoading ? 'Creating...' : 'Create account'}
                 </button>
-                {/* <button
-                    type='button'
-                    className={signupStyles.googleButton}
-                    onClick={handleGoogleSignIn}>
+                {/* <button type='button' className={signupStyles.googleButton}>
                     <svg
                         className={signupStyles.googleIcon}
                         viewBox='0 0 24 24'>

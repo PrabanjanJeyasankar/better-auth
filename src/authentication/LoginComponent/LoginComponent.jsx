@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
 import { useContext, useState } from 'react'
-import { validateLoginInputs } from '../../utils/authenticationFieldsValidation'
 import { UserContext } from '../../context/userContext'
+import { validateLoginInputs } from '../../utils/authenticationFieldsValidation'
 
-import loginStyles from './LoginComponent.module.css'
+import InputFieldComponent from '../../components/InputFieldComponent/InputFieldComponent'
 import AppLogo from '../../../src/assets/images/better_auth_favicon.webp'
 import handleLoginService from '../../service/handleLoginService'
+import loginStyles from './LoginComponent.module.css'
 import toast from 'react-hot-toast'
 
 function LoginComponent() {
@@ -54,7 +55,9 @@ function LoginComponent() {
                     toast.error('User not found, please sign up.')
                 } else {
                     console.error('Error during login:', error)
-                    toast.error('An error occurred during login. Please try again.')
+                    toast.error(
+                        'An error occurred during login. Please try again.'
+                    )
                 }
             } finally {
                 setIsLoading(false)
@@ -64,23 +67,6 @@ function LoginComponent() {
             setIsLoading(false)
         }
     }
-
-    const inputFields = [
-        {
-            id: 'email',
-            name: 'email',
-            type: 'email',
-            placeholder: ' ',
-            label: 'Email',
-        },
-        {
-            id: 'password',
-            name: 'password',
-            type: 'password',
-            placeholder: ' ',
-            label: 'Password',
-        },
-    ]
 
     return (
         <div className={loginStyles.container}>
@@ -101,32 +87,40 @@ function LoginComponent() {
                         Sign Up
                     </Link>
                 </p>
-                {inputFields.map(({ id, name, type, placeholder, label }) => (
-                    <div key={id} className={loginStyles.inputGroup}>
-                        <input
-                            type={type}
-                            id={id}
-                            name={name}
-                            className={loginStyles.input}
-                            value={formData[name]}
-                            placeholder={placeholder}
-                            onChange={handleInputChange}
-                        />
-                        <label htmlFor={id} className={loginStyles.label}>
-                            {label}
-                        </label>
-                        {errors[name] && (
-                            <p className={loginStyles.error}>{errors[name]}</p>
-                        )}
-                    </div>
-                ))}
-                <p className={loginStyles.forgot_password}>Forgot password?</p>
+                <InputFieldComponent
+                    id='email'
+                    name='email'
+                    type='email'
+                    value={formData.email}
+                    placeholder=' '
+                    label='Email'
+                    onChange={handleInputChange}
+                    error={errors.email}
+                    containerClass={loginStyles.inputGroup}
+                    inputClass={loginStyles.input}
+                    labelClass={loginStyles.label}
+                    errorClass={loginStyles.error}
+                />
+                <InputFieldComponent
+                    id='password'
+                    name='password'
+                    type='password'
+                    value={formData.password}
+                    placeholder=' '
+                    label='Password'
+                    onChange={handleInputChange}
+                    error={errors.password}
+                    containerClass={loginStyles.inputGroup}
+                    inputClass={loginStyles.input}
+                    labelClass={loginStyles.label}
+                    errorClass={loginStyles.error}
+                />
+                <Link to='/request-otp' className={loginStyles.forgot_password}>
+                    Forgot password?
+                </Link>
                 <button type='submit' className={loginStyles.loginButton}>
-                    {isLoading ? 'Logging in...' : ' Login'}
+                    {isLoading ? 'Logging in...' : 'Login'}
                 </button>
-                {/* <button type='button' className={loginStyles.googleButton}>
-                    Login with Google
-                </button> */}
             </form>
         </div>
     )

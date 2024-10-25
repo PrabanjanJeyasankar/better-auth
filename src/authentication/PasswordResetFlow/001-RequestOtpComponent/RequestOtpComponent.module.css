@@ -12,10 +12,11 @@
     display: flex;
     flex-direction: column;
     background-color: white;
-    padding: 2rem;
+    padding: 2rem 2rem 4rem 2rem;
     border-radius: 8px;
     width: 100%;
     max-width: 450px;
+    position: relative;
 }
 
 .app_logo {
@@ -26,16 +27,8 @@
     margin: 0 0 2rem 0;
 }
 
-.app_name {
-    display: none;
-    font-size: 2rem;
-    font-weight: 600;
-    letter-spacing: -0.05rem;
-    margin-bottom: 0.5rem;
-}
-
 .title {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     font-weight: 600;
     margin-bottom: 0.8rem;
     letter-spacing: -0.07rem;
@@ -45,15 +38,9 @@
     color: #666;
     font-size: 0.9rem;
     margin-bottom: 1.5rem;
-    margin-left: 0.3rem;
 }
 
-.signup_link {
-    color: #017e28;
-    margin-left: 0.3rem;
-}
-
-.inputGroup {
+.input_group {
     position: relative;
     margin-bottom: 1rem;
 }
@@ -89,10 +76,10 @@
     background-color: white;
 }
 
-.loginButton {
+.submit_button {
     width: 100%;
     padding: 0.75rem;
-    background-color: #1a202c;
+    background-color: black;
     color: white;
     border: none;
     border-radius: 0.3rem;
@@ -100,48 +87,44 @@
     cursor: pointer;
     transition: background-color 0.3s;
     margin: 0.5rem 0 1rem 0;
-    background-color: black;
 }
 
-.loginButton:hover {
+.submit_button:hover {
     background-color: rgba(0, 0, 0, 0.825);
 }
 
-.googleButton {
-    width: 100%;
-    padding: 0.75rem;
-    background-color: white;
-    color: #333;
-    border: 1px solid #ccc;
-    border-radius: 0.3;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 0.25rem;
+    margin-left: 0.4rem;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.login_link {
+    color: #017e28;
+    margin-left: 0.3rem;
+}
+
+.back_button {
+    position: absolute;
     display: flex;
     align-items: center;
-    justify-content: center;
+    bottom: 0px;
+    left: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
 }
 
-.googleButton:hover {
-    background-color: #eee;
-}
-
-.googleIcon {
-    height: 1.3rem;
-    margin-right: 0.6rem;
-}
-
-.error {
-    font-size: 0.8rem;
-    color: red;
-    margin-top: 0.2rem;
-}
-
-.forgot_password {
-    text-align: right;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-    color: #017e28;
+.back_button:hover {
+    opacity: 0.5;
+    transition: opacity 0.1s ease-in; 
 }
 
 @media (min-width: 220px) and (max-width: 426px) {
@@ -159,16 +142,16 @@
         display: block;
     }
 
+    .title {
+        font-size: 2.1rem;
+    }
+
     .app_name {
         display: block;
         font-size: 2rem;
         font-weight: 600;
         letter-spacing: -0.05rem;
         margin-bottom: 0.5rem;
-    }
-
-    .title {
-        display: none;
     }
 
     .subtitle {
@@ -197,16 +180,16 @@
         display: block;
     }
 
+    .title {
+        font-size: 2.1rem;
+    }
+
     .app_name {
         display: block;
         font-size: 2rem;
         font-weight: 600;
         letter-spacing: -0.05rem;
         margin-bottom: 0.5rem;
-    }
-
-    .title {
-        display: none;
     }
 
     .input {

@@ -21,7 +21,6 @@ const validateEmail = (email) => {
 
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
-
     if (!emailPattern.test(email)) {
         return '*Please enter a valid email address.'
     }
@@ -74,4 +73,9 @@ const validateLoginInputs = (email, password) => {
     return validateInputs(inputs, validations)
 }
 
-export { validateSignupInputs, validateLoginInputs }
+export {
+    validateField,
+    validateSignupInputs,
+    validateLoginInputs,
+    validateEmail,
+}
