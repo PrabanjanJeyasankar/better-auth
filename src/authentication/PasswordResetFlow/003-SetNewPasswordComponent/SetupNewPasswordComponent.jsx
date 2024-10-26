@@ -16,7 +16,7 @@ function SetupNewPasswordComponent() {
     const [isLoading, setIsLoading] = useState(false)
 
     const { email } = usePasswordResetContext()
-    console.log(email)
+    // console.log(email)
 
     const navigate = useNavigate()
 

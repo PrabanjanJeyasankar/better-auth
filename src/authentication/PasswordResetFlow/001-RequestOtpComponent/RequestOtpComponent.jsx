@@ -29,7 +29,7 @@ function RequestOtpComponent() {
         if (!validationError) {
             try {
                 const response = await handleRequestOtpService(email)
-                console.log(response)
+                // console.log(response)
                 if (response.status === 200) {
                     toast.success(
                         'OTP sent to your email. Please check your inbox.'

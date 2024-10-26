@@ -15,7 +15,7 @@ function OTPVerificationComponent() {
 
     const navigate = useNavigate()
     const { email } = usePasswordResetContext()
-    console.log(email)
+    // console.log(email)
 
     const handleInputChange = (event) => {
         setOtp(event.target.value)

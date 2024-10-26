@@ -35,7 +35,7 @@ function LoginComponent() {
         if (isValid) {
             try {
                 const response = await handleLoginService(formData)
-                console.log(response)
+                // console.log(response)
 
                 if (response.status === 200) {
                     const userProfile = response.data.userProfile

@@ -1,12 +1,12 @@
 import axiosInstance from '../utils/axiosInstance'
 
-const handleSignup = async (formData) => {
+const handleSignupService = async (formData) => {
     try {
         const response = await axiosInstance.post('/user/signup', formData)
         return response
     } catch (error) {
-        return error
+        return error.response
     }
 }
 
-export default handleSignup
+export default handleSignupService

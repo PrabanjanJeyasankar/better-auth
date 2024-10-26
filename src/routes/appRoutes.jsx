@@ -15,7 +15,6 @@ import AuthenticationLayout from '../layouts/AuthenticationLayout/Authentication
 import SignupComponent from '../authentication/SignupComponent/SignupComponent'
 import LoginComponent from '../authentication/LoginComponent/LoginComponent'
 import RequestOtpComponent from '../authentication/PasswordResetFlow/001-RequestOtpComponent/RequestOtpComponent'
-import OtpVerificationComponent from '../authentication/PasswordResetFlow/002-OtpVerificationComponent/OtpVerificationComponent'
 import SetNewPasswordComponent from '../authentication/PasswordResetFlow/003-SetNewPasswordComponent/SetupNewPasswordComponent'
 import {
     PasswordResetFlowProvider,
@@ -23,8 +22,10 @@ import {
 } from '../context/passwordResetFlowContext'
 import usePasswordResetGuard from '../hooks/usePasswordResetGaurd'
 import { useEffect } from 'react'
+import OTPVerificationComponent from '../authentication/PasswordResetFlow/002-OtpVerificationComponent/OTPVerificationComponent'
 
 function AppRoutes() {
+
     return (
         /*
         |----------------------------------------------------------------------------
@@ -105,7 +106,7 @@ function OtpVerificationWrapper() {
     useEffect(() => {
         advanceStep() // Unlock next step
     }, [])
-    return <OtpVerificationComponent />
+    return <OTPVerificationComponent />
 }
 
 /*
