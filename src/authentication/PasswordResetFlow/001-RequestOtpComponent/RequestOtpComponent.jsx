@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import { validateEmail } from '../../../utils/authenticationFieldsValidation'
 import { usePasswordResetContext } from '../../../context/passwordResetContext'
 
+import AppLogo from '../../../assets/images/better_auth_favicon.webp'
 import InputFieldComponent from '../../../components/InputFieldComponent/InputFieldComponent'
 import ButtonComponent from '../../../components/ButtonComponent/ButtonComponent'
-import handleRequestOtpService from '../../../service/handleRequestOtpService'
-import AppLogo from '../../../assets/images/better_auth_favicon.webp'
+import handleResetPasswordRequestOtpService from '../../../service/handleResetPasswordRequestOtpService'
 import requestOtpStyles from './RequestOtpComponent.module.css'
 import toast from 'react-hot-toast'
 
@@ -28,13 +29,19 @@ function RequestOtpComponent() {
         const validationError = validateEmail(email)
         if (!validationError) {
             try {
-                const response = await handleRequestOtpService(email)
+                const response = await handleResetPasswordRequestOtpService(
+                    email
+                )
                 console.log(response)
                 if (response.status === 200) {
                     toast.success(
                         'OTP sent to your email. Please check your inbox.'
                     )
-                    navigate('/verify-otp')
+                    navigate('/verify-otp', {
+                        state: {
+                            email: email,
+                        },
+                    })
                 } else if (response.status === 404) {
                     toast.error(
                         'Email not found. Please check your email address.'
@@ -89,7 +96,7 @@ function RequestOtpComponent() {
                         placeholder=' '
                         label='Email'
                         onChange={handleInputChange}
-                        error={errors.email} // Display error message
+                        error={errors.email}
                         containerClass={requestOtpStyles.input_group}
                         inputClass={requestOtpStyles.input}
                         labelClass={requestOtpStyles.label}

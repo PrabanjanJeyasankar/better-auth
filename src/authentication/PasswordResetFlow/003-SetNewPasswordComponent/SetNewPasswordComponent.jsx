@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import { usePasswordResetContext } from '../../../context/passwordResetContext'
 
 import InputFieldComponent from '../../../components/InputFieldComponent/InputFieldComponent'
 import ButtonComponent from '../../../components/ButtonComponent/ButtonComponent'
 import handleNewPasswordService from '../../../service/handleNewPasswordService'
-import setupNewPasswordStyles from './SetupNewPasswordComponent.module.css'
 import validateNewPassword from '../../../utils/validateNewPassword'
+import setNewPasswordStyles from './SetNewPasswordComponent.module.css'
 import toast from 'react-hot-toast'
 
 function SetupNewPasswordComponent() {
@@ -16,7 +17,6 @@ function SetupNewPasswordComponent() {
     const [isLoading, setIsLoading] = useState(false)
 
     const { email } = usePasswordResetContext()
-    console.log(email)
 
     const navigate = useNavigate()
 
@@ -76,18 +76,16 @@ function SetupNewPasswordComponent() {
     }
 
     return (
-        <div className={setupNewPasswordStyles.container}>
+        <div className={setNewPasswordStyles.container}>
             <form
-                className={setupNewPasswordStyles.form}
+                className={setNewPasswordStyles.form}
                 onSubmit={handleSubmit}
                 noValidate>
-                <h1 className={setupNewPasswordStyles.title}>
-                    Set New Password
-                </h1>
-                <p className={setupNewPasswordStyles.subtitle}>
+                <h1 className={setNewPasswordStyles.title}>Set New Password</h1>
+                <p className={setNewPasswordStyles.subtitle}>
                     Make sure your password is memorable and secure.
                 </p>
-                <div className={setupNewPasswordStyles.input_group}>
+                <div className={setNewPasswordStyles.input_group}>
                     <InputFieldComponent
                         type='password'
                         id='newPassword'
@@ -97,13 +95,13 @@ function SetupNewPasswordComponent() {
                         label='New Password'
                         onChange={handleInputChange}
                         error={errors.newPassword}
-                        containerClass={setupNewPasswordStyles.input_group}
-                        inputClass={setupNewPasswordStyles.input}
-                        labelClass={setupNewPasswordStyles.label}
-                        errorClass={setupNewPasswordStyles.error}
+                        containerClass={setNewPasswordStyles.input_group}
+                        inputClass={setNewPasswordStyles.input}
+                        labelClass={setNewPasswordStyles.label}
+                        errorClass={setNewPasswordStyles.error}
                     />
                 </div>
-                <div className={setupNewPasswordStyles.input_group}>
+                <div className={setNewPasswordStyles.input_group}>
                     <InputFieldComponent
                         type='password'
                         id='confirmPassword'
@@ -113,20 +111,20 @@ function SetupNewPasswordComponent() {
                         label='Confirm Password'
                         onChange={handleInputChange}
                         error={errors.confirmPassword}
-                        containerClass={setupNewPasswordStyles.input_group}
-                        inputClass={setupNewPasswordStyles.input}
-                        labelClass={setupNewPasswordStyles.label}
-                        errorClass={setupNewPasswordStyles.error}
+                        containerClass={setNewPasswordStyles.input_group}
+                        inputClass={setNewPasswordStyles.input}
+                        labelClass={setNewPasswordStyles.label}
+                        errorClass={setNewPasswordStyles.error}
                     />
                 </div>
                 <ButtonComponent
                     type='submit'
-                    className={setupNewPasswordStyles.submitButton}
+                    className={setNewPasswordStyles.submitButton}
                     disabled={isLoading}>
                     {isLoading ? 'Updating...' : 'Update Password'}
                 </ButtonComponent>
                 <ButtonComponent
-                    className={setupNewPasswordStyles.back_button}
+                    className={setNewPasswordStyles.back_button}
                     onClick={handleBack}>
                     <svg
                         xmlns='http://www.w3.org/2000/svg'

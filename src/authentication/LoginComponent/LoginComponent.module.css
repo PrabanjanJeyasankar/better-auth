@@ -89,6 +89,23 @@
     background-color: white;
 }
 
+.password_container {
+    position: relative;
+}
+
+.eyeIcon {
+    position: absolute;
+    right: 1rem;
+    top: 40%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+}
+
+.eyeIcon:hover {
+    color: #555;
+}
+
 .loginButton {
     width: 100%;
     padding: 0.75rem;

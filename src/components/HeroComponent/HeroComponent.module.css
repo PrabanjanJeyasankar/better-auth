@@ -1,0 +1,63 @@
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.user_title {
+    font-size: 3.2rem;
+    line-height: 4.5rem;
+}
+
+.app_title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+    letter-spacing: 0.5px;
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    color: #333333;
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 1rem;
+}
+
+.login_button {
+    padding: 0.75rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000000;
+    background-color: #ffffff;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signup_button,
+.logout_button {
+    padding: 0.75rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #000000;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #333333;
+}

@@ -15,7 +15,7 @@
     padding: 2rem 2rem 4rem 2rem;
     border-radius: 8px;
     width: 100%;
-    max-width: 450px;
+    max-width: 480px;
     position: relative;
 }
 
@@ -37,7 +37,22 @@
 .subtitle {
     color: #666;
     font-size: 0.9rem;
+    line-height: 18px;
+}
+
+.change_mail_container {
+    color: #666;
+    font-size: 0.9rem;
     margin-bottom: 1.5rem;
+}
+
+.otp_sent_email {
+    color: #017e28;
+    font-weight: 500;
+}
+
+.change_mail {
+    color: black;
 }
 
 .inputGroup {
@@ -77,6 +92,11 @@
 }
 
 .submitButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
     width: 100%;
     padding: 0.75rem;
     background-color: black;
@@ -91,6 +111,10 @@
 
 .submitButton:hover {
     background-color: rgba(0, 0, 0, 0.825);
+}
+
+.signin_button_state_text {
+    padding: 0.4rem 0;
 }
 
 .error {
@@ -124,5 +148,5 @@
 
 .back_button:hover {
     opacity: 0.5;
-    transition: opacity 0.1s ease-in; 
+    transition: opacity 0.1s ease-in;
 }

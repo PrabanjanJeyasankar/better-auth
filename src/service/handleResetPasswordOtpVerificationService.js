@@ -1,8 +1,11 @@
 import axiosInstance from '../utils/axiosInstance'
 
-const handleLoginService = (formData) => {
+const handlePasswordResetOtpVerificationService = (email, otp) => {
     return axiosInstance
-        .post('/user/login', formData)
+        .post('/user/verify-otp', {
+            email,
+            otp,
+        })
         .then((response) => response)
         .catch((error) => {
             console.error(error)
@@ -10,4 +13,4 @@ const handleLoginService = (formData) => {
         })
 }
 
-export default handleLoginService
+export default handlePasswordResetOtpVerificationService

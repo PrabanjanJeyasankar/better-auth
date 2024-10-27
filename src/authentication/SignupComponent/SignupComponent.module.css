@@ -89,7 +89,29 @@
     background-color: white;
 }
 
-.createButton {
+.password_container {
+    position: relative;
+}
+
+.eyeIcon {
+    position: absolute;
+    right: 1rem;
+    top: 40%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+}
+
+.eyeIcon:hover {
+    color: #555;
+}
+
+.signin_button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
     width: 100%;
     padding: 0.75rem;
     background-color: #1a202c;
@@ -101,13 +123,18 @@
     transition: background-color 0.3s;
     margin: 0.5rem 0 1rem 0;
     background-color: black;
+    position: relative;
     /* background-color: #017e28; */
     /* background: linear-gradient(170deg, #66c16d 0%, #1a472e 100%); */
 }
 
-.createButton:hover {
-    /* background-color: #00611f; */
+.signin_button:hover {
     background-color: rgba(0, 0, 0, 0.825);
+}
+.spinning_loader {
+    position: absolute;
+    left: 27%;
+    top: 10%;
 }
 
 .googleButton {
@@ -141,18 +168,6 @@
     margin-top: 0.25rem;
     margin-left: 0.4rem;
 }
-
-/* .weak {
-    background-color: #ff4d4d;
-}
-
-.medium {
-    background-color: #ffcc00;
-}
-
-.strong {
-    background-color: #4caf50;
-} */
 
 .passwordStrengthText {
     font-size: 12px;

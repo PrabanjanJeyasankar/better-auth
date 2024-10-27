@@ -1,10 +1,20 @@
-const validateField = (field, value, required, minimumLength) => {
+const validateField = (
+    field,
+    value,
+    required,
+    minimumLength,
+    maximumLength
+) => {
     if (required && !value) {
         return `*${field} is required`
     }
 
     if (minimumLength && value.length < minimumLength) {
         return `*${field} must be at least ${minimumLength} characters.`
+    }
+
+    if (maximumLength && value.length > maximumLength) {
+        return `*sorry ${field} must not exceed ${maximumLength} characters.`
     }
 
     return ''
@@ -37,7 +47,8 @@ const validateInputs = (inputs, validations) => {
             field,
             value,
             validations[field]?.required,
-            validations[field]?.minimumLength
+            validations[field]?.minimumLength,
+            validations[field]?.maximumLength
         )
 
         if (error) {
@@ -45,6 +56,7 @@ const validateInputs = (inputs, validations) => {
             isValid = false
         }
     }
+
     const emailError = validateEmail(inputs.email)
     if (emailError) {
         errors.email = emailError
@@ -59,7 +71,7 @@ const validateSignupInputs = (name, email, password) => {
     const validations = {
         name: { required: true },
         email: { required: true },
-        password: { required: true, minimumLength: 6 },
+        password: { required: true, minimumLength: 6, maximumLength: 128 },
     }
     return validateInputs(inputs, validations)
 }
@@ -68,7 +80,7 @@ const validateLoginInputs = (email, password) => {
     const inputs = { email, password }
     const validations = {
         email: { required: true },
-        password: { required: true, minimumLength: 6 },
+        password: { required: true, minimumLength: 6, maximumLength: 128 },
     }
     return validateInputs(inputs, validations)
 }

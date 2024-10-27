@@ -1,7 +1,9 @@
-import { PasswordResetProvider } from './context/passwordResetContext'
-import { UserProvider } from './context/userContext'
-import AppRoutes from './routes/appRoutes'
 import { Toaster } from 'react-hot-toast'
+
+import { UserProvider } from './context/userContext'
+import { PasswordResetProvider } from './context/passwordResetContext'
+import AppRoutes from './routes/appRoutes'
+
 
 function App() {
     return (
