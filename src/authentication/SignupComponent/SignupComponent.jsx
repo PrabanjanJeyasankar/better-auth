@@ -62,14 +62,24 @@ function SignupComponent() {
                     toast.success(
                         'OTP sent to your email. Please check your inbox.'
                     )
-                } else if (response.status === 409) {
+                } else if (response.status === 403) {
                     setErrors({ email: 'User already exists' })
-                    toast.error(
-                        'User already registered, please login to continue.'
+                    toast.success(
+                        'User already exists but is not verified. Please verify your email to continue...',
+                        {
+                            duration: 8000,
+                        }
                     )
+                    navigate('/verify-otp', {
+                        state: {
+                            isSignup: true,
+                            email: formData.email,
+                        },
+                    })
                 }
             } catch (error) {
                 console.error('Signup error:', error)
+                console.log(error?.response?.data?.message)
                 toast.error('Something went wrong. Please try again.')
             } finally {
                 setIsLoading(false)

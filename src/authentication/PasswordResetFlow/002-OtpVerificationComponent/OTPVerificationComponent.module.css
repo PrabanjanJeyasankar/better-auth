@@ -113,15 +113,59 @@
     background-color: rgba(0, 0, 0, 0.825);
 }
 
-.signin_button_state_text {
+.verify_button_state_text {
     padding: 0.4rem 0;
+}
+
+.resend_otp_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.resend_otp_button {
+    background: none;
+    border: none;
+    color: #017e28;
+    text-decoration: underline;
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+}
+
+.resend_otp_button:disabled {
+    color: #6c757d;
+    cursor: not-allowed;
+    text-decoration: none;
+}
+.tooltipContainer {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip {
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0.9;
+    z-index: 1;
+    pointer-events: none;
 }
 
 .error {
     color: red;
     font-size: 12px;
-    margin-top: 0.25rem;
-    margin-left: 0.4rem;
+    /* margin-top: 0.25rem; */
+    /* margin-left: 0.4rem; */
+    margin-top: 0;
+    margin-bottom: 0.5rem;
 }
 
 .footer {

@@ -20,6 +20,7 @@ function HeroComponent() {
             setIsLoggedIn(false)
             setUserProfile(null)
             setUserName(null)
+            setIsGoogleAuthVerification(false)
             navigate('/')
         } catch (error) {
             console.error('Logout error:', error)

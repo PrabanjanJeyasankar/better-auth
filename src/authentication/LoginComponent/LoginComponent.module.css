@@ -106,7 +106,18 @@
     color: #555;
 }
 
+.spinning_loader {
+    position: absolute;
+    left: 29%;
+    top: 10%;
+}
+
 .loginButton {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
     width: 100%;
     padding: 0.75rem;
     background-color: #1a202c;
@@ -118,6 +129,7 @@
     transition: background-color 0.3s;
     margin: 0.5rem 0 1rem 0;
     background-color: black;
+    position: relative;
 }
 
 .loginButton:hover {

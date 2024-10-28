@@ -1,26 +1,32 @@
-import { useState, useContext } from 'react'
+import { useState, useEffect, useContext, useRef } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 
 import { UserContext } from '../../../context/userContext'
 
 import handleSignupOtpVerificationService from '../../../service/handleSignupOtpVerificationService'
-import handleResetPasswordOtpVerificationService from '../../../service/handleResetPasswordOtpVerificationService.js'
+import handleResetPasswordOtpVerificationService from '../../../service/handleResetPasswordOtpVerificationService'
 
 import ButtonComponent from '../../../components/ButtonComponent/ButtonComponent'
 import SpinnerLoaderComponent from '../../../components/SpinnerLoaderComponent/SpinnerLoaderComponent'
 
 import otpVerificationStyles from './OTPVerificationComponent.module.css'
 import toast from 'react-hot-toast'
-import OtpInputComponent from '../../../components/OtpInputComponent/OtpInputComponent.jsx'
+import OtpInputComponent from '../../../components/OtpInputComponent/OtpInputComponent'
+import handlePasswordResetOtpVerificationService from '../../../service/handleResetPasswordOtpVerificationService'
+import handleResetPasswordRequestOtpService from '../../../service/handleResetPasswordRequestOtpService'
 
 function OTPVerificationComponent() {
     const { setIsLoggedIn, setUserProfile } = useContext(UserContext)
     const [otp, setOtp] = useState(Array(6).fill(''))
     const [errors, setErrors] = useState({})
     const [isLoading, setIsLoading] = useState(false)
+    const [countdown, setCountdown] = useState(20)
+    const [isResendDisabled, setIsResendDisabled] = useState(true)
+
     const location = useLocation()
     const { isSignup, email } = location.state || {}
     const navigate = useNavigate()
+    const countdownIntervalRef = useRef(null)
 
     const handleOtpChange = (newOtp) => {
         setOtp(newOtp)
@@ -32,7 +38,7 @@ function OTPVerificationComponent() {
         setIsLoading(true)
 
         if (otp.some((digit) => digit === '')) {
-            setErrors({ otp: 'Please fill all OTP fields.' })
+            setErrors({ otp: '* Please fill all fields.' })
             setIsLoading(false)
             return
         }
@@ -41,7 +47,6 @@ function OTPVerificationComponent() {
 
         try {
             let response
-            console.log(isSignup)
 
             if (isSignup) {
                 response = await handleSignupOtpVerificationService(
@@ -56,7 +61,6 @@ function OTPVerificationComponent() {
             }
 
             if (response.status === 201 && isSignup) {
-                console.log(response.status)
                 const userProfile = response.data.userProfile
                 setIsLoggedIn(true)
                 setUserProfile(userProfile)
@@ -70,8 +74,6 @@ function OTPVerificationComponent() {
                 navigate(isSignup ? '/' : '/set-new-password')
             } else if (response.status === 400) {
                 toast.error('Invalid OTP')
-            } else if (response.status === 400) {
-                toast.error('User not found')
             } else if (response.status === 410) {
                 toast.error('OTP has expired.')
             }
@@ -81,6 +83,56 @@ function OTPVerificationComponent() {
         } finally {
             setIsLoading(false)
         }
+    }
+
+    const handleResendOtp = async () => {
+        try {
+            setIsResendDisabled(true)
+            const response = await handleResetPasswordRequestOtpService(email)
+            if (response.status === 200) {
+                toast.success(
+                    'OTP sent again to your email. Please check your inbox.'
+                )
+                resetCountdown()
+            } else if (response.status === 404) {
+                toast.error('Email not found. Please check your email address.')
+            } else if (response.status === 500) {
+                toast.error('Internal server error. Please try again later.')
+            } else {
+                toast.error('An unexpected error occurred. Please try again.')
+            }
+        } catch (error) {
+            toast.error('Failed to resend OTP. Please try again.')
+        }
+    }
+
+    const resetCountdown = () => {
+        setCountdown(3)
+        setIsResendDisabled(true)
+        if (countdownIntervalRef.current)
+            clearInterval(countdownIntervalRef.current)
+
+        countdownIntervalRef.current = setInterval(() => {
+            setCountdown((prevCountdown) => {
+                if (prevCountdown <= 1) {
+                    clearInterval(countdownIntervalRef.current)
+                    setIsResendDisabled(false)
+                    return 0
+                }
+                return prevCountdown - 1
+            })
+        }, 1000)
+    }
+
+    useEffect(() => {
+        resetCountdown()
+        return () => clearInterval(countdownIntervalRef.current)
+    }, [])
+
+    const formatCountdown = () => {
+        const minutes = Math.floor(countdown / 60)
+        const seconds = countdown % 60
+        return `${minutes}:${seconds.toString().padStart(2, '0')}`
     }
 
     const handleBack = () => {
@@ -111,12 +163,14 @@ function OTPVerificationComponent() {
                     </Link>
                 </p>
                 <div className={otpVerificationStyles.inputGroup}>
-                    <OtpInputComponent value={otp} onChange={handleOtpChange} />{' '}
+                    <OtpInputComponent
+                        value={otp}
+                        onChange={handleOtpChange}
+                        errorClass={otpVerificationStyles.error}
+                    />
                 </div>
                 {errors.otp && (
-                    <p className={otpVerificationStyles.error_message}>
-                        {errors.otp}
-                    </p>
+                    <p className={otpVerificationStyles.error}>{errors.otp}</p>
                 )}
                 <ButtonComponent
                     type='submit'
@@ -130,6 +184,19 @@ function OTPVerificationComponent() {
                         {isLoading ? 'Verifying...' : 'Verify OTP'}
                     </span>
                 </ButtonComponent>
+
+                <div className={otpVerificationStyles.resend_otp_container}>
+                    <p>Didn't receive the code? </p>
+                    <ButtonComponent
+                        className={otpVerificationStyles.resend_otp_button}
+                        onClick={handleResendOtp}
+                        disabled={isResendDisabled}>
+                        {isResendDisabled
+                            ? `Resend in ${formatCountdown()}`
+                            : 'Resend OTP'}
+                    </ButtonComponent>
+                </div>
+
                 <ButtonComponent
                     className={otpVerificationStyles.back_button}
                     onClick={handleBack}>

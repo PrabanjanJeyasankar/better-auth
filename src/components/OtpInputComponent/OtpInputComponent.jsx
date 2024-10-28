@@ -22,13 +22,38 @@ function OtpInputComponent({ value, onChange }) {
     }
 
     const handleKeyDown = (index, e) => {
-        // Handle backspace
-        if (e.key === 'Backspace' && !value[index]) {
-            if (index > 0) {
-                const prevInput = document.getElementById(`otp-${index - 1}`)
-                prevInput.focus()
+        if (e.key === 'Backspace') {
+            const newOtp = [...value]
+
+            if (!newOtp[index]) {
+                if (index > 0) {
+                    newOtp[index - 1] = ''
+                    onChange(newOtp)
+
+                    const prevInput = document.getElementById(
+                        `otp-${index - 1}`
+                    )
+                    prevInput.focus()
+                }
+            } else {
+                newOtp[index] = ''
+                onChange(newOtp)
             }
         }
+    }
+
+    const handlePaste = (e) => {
+        const pasteData = e.clipboardData.getData('Text')
+        if (/^\d{6}$/.test(pasteData)) {
+            const newOtp = pasteData.split('')
+            onChange(newOtp)
+
+            const lastInput = document.getElementById(
+                `otp-${newOtp.length - 1}`
+            )
+            lastInput.focus()
+        }
+        e.preventDefault()
     }
 
     return (
@@ -42,9 +67,11 @@ function OtpInputComponent({ value, onChange }) {
                     value={digit}
                     onChange={(e) => handleInputChange(index, e.target.value)}
                     onKeyDown={(e) => handleKeyDown(index, e)}
+                    onPaste={index === 0 ? handlePaste : undefined}
                     maxLength={1}
                     containerClass={otpInputStyles.inputFieldContainer}
                     inputClass={otpInputStyles.otpInput}
+                    errorClass={otpInputStyles.error}
                 />
             ))}
         </div>

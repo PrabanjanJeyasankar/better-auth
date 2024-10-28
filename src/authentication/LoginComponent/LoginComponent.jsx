@@ -9,6 +9,7 @@ import handleLoginService from '../../service/handleLoginService'
 import loginStyles from './LoginComponent.module.css'
 import toast from 'react-hot-toast'
 import ButtonComponent from '../../components/ButtonComponent/ButtonComponent'
+import SpinnerLoaderComponent from '../../components/SpinnerLoaderComponent/SpinnerLoaderComponent'
 
 function LoginComponent() {
     const { setIsLoggedIn, setUserProfile } = useContext(UserContext)
@@ -161,8 +162,18 @@ function LoginComponent() {
                 <Link to='/request-otp' className={loginStyles.forgot_password}>
                     Forgot password?
                 </Link>
-                <ButtonComponent type='submit' className={loginStyles.loginButton}>
-                    {isLoading ? 'Logging in...' : 'Login'}
+                <ButtonComponent
+                    type='submit'
+                    className={loginStyles.loginButton}
+                    >
+                    {isLoading ? (
+                        <span className={loginStyles.spinning_loader}>
+                            <SpinnerLoaderComponent />
+                        </span>
+                    ) : null}
+                    <span className={loginStyles.login_button_state_text}>
+                        {isLoading ? 'Logging in...' : 'Login'}{' '}
+                    </span>
                 </ButtonComponent>
             </form>
         </div>

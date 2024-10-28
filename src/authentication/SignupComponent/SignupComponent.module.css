@@ -131,6 +131,7 @@
 .signin_button:hover {
     background-color: rgba(0, 0, 0, 0.825);
 }
+
 .spinning_loader {
     position: absolute;
     left: 27%;
